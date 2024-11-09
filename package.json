@@ -2,7 +2,9 @@
   "name": "wrangler-insert-bug",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "db": "rimraf .wrangler && wrangler d1 execute DB --local --command \"SELECT 1;\" > nul 2>&1 && drizzle-kit push && tsx src/db/seed/index.ts",
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "start": "wrangler dev",
@@ -10,10 +12,16 @@
     "cf-typegen": "wrangler types"
   },
   "devDependencies": {
+    "better-sqlite3": "^11.0.0",
     "@cloudflare/vitest-pool-workers": "^0.5.2",
     "@cloudflare/workers-types": "^4.20241106.0",
+    "@types/node": "^22.9.0",
+    "drizzle-kit": "^0.28.0",
+    "drizzle-orm": "^0.36.1",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.2",
     "typescript": "^5.5.2",
     "vitest": "2.0.5",
-    "wrangler": "^3.60.3"
+    "wrangler": "3.86.0"
   }
 }
